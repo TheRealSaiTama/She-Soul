@@ -79,7 +79,10 @@ const CycleCalendar: React.FC = () => {
                   className="rounded-md border shadow-sm"
                   classNames={{
                     day_selected: "bg-shesoul-pastel text-foreground hover:bg-shesoul-pastel hover:text-foreground",
-                    day: (day) => cn(dayClassName(day.date)),
+                    day: (props) => {
+                      // We need to access the date from the props to use our dayClassName function
+                      return cn(dayClassName(props.date));
+                    }
                   }}
                 />
               </div>
