@@ -94,6 +94,8 @@
 
   body {
     @apply bg-shesoul-blush text-foreground antialiased;
+    background-image: radial-gradient(circle at 90% 10%, rgba(252, 145, 213, 0.1), transparent 40%), 
+                      radial-gradient(circle at 10% 90%, rgba(245, 205, 47, 0.05), transparent 40%);
   }
 }
 
@@ -131,21 +133,133 @@
     @apply w-full;
   }
   
-  .module-card {
-    @apply bg-white bg-opacity-70 backdrop-blur-sm rounded-2xl shadow-md p-6 hover:shadow-lg transition-all duration-300;
+  /* Glassmorphism Components */
+  .glass-panel {
+    @apply bg-white bg-opacity-50 backdrop-blur-md rounded-2xl shadow-lg border border-white border-opacity-20;
+    box-shadow: 0 8px 32px rgba(252, 145, 213, 0.1);
   }
   
-  .dashboard-card {
-    @apply bg-white rounded-2xl shadow-sm p-5 hover:shadow-md transition-all;
+  .glass-card {
+    @apply bg-white bg-opacity-40 backdrop-blur-md rounded-2xl shadow-md border border-white border-opacity-20 transition-all duration-300;
+  }
+  
+  .glass-card:hover {
+    @apply bg-opacity-50 shadow-lg;
+    box-shadow: 0 8px 32px rgba(252, 145, 213, 0.15);
+  }
+  
+  .neumorphic-card {
+    @apply bg-shesoul-blush rounded-2xl;
+    box-shadow: 8px 8px 16px rgba(208, 184, 197, 0.5), 
+                -8px -8px 16px rgba(255, 255, 255, 0.8);
   }
   
   .circle-icon {
     @apply flex items-center justify-center w-12 h-12 rounded-full text-white;
+  }
+  
+  /* 3D elements animations */
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+  
+  .animate-breathe {
+    animation: breathe 4s ease-in-out infinite;
+  }
+  
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+  
+  /* Futuristic UI Elements */
+  .futuristic-card {
+    @apply relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-shesoul-blush p-6;
+  }
+  
+  .futuristic-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(45deg, rgba(252, 145, 213, 0.3), transparent 40%);
+    z-index: 0;
+  }
+  
+  .futuristic-card > * {
+    position: relative;
+    z-index: 1;
+  }
+  
+  .glowing-border {
+    @apply relative;
+    box-shadow: 0 0 15px rgba(252, 145, 213, 0.5);
+  }
+  
+  .glowing-border::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 1px solid rgba(252, 145, 213, 0.5);
+    border-radius: inherit;
+    animation: border-pulse 2s infinite;
+  }
+  
+  .dashboard-card {
+    @apply glass-card p-5 hover:shadow-md transition-all;
   }
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
+  }
+  
+  .text-gradient {
+    @apply bg-clip-text text-transparent bg-gradient-to-r from-shesoul-bubblegum to-shesoul-peach;
+  }
+  
+  .backdrop-blur-xs {
+    backdrop-filter: blur(2px);
+  }
+}
+
+@keyframes float {
+  0%, 100% { 
+    transform: translateY(0);
+  }
+  50% { 
+    transform: translateY(-10px);
+  }
+}
+
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.05);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { 
+    box-shadow: 0 0 10px rgba(252, 145, 213, 0.5);
+  }
+  50% { 
+    box-shadow: 0 0 20px rgba(252, 145, 213, 0.8);
+  }
+}
+
+@keyframes border-pulse {
+  0%, 100% { 
+    border-color: rgba(252, 145, 213, 0.5);
+  }
+  50% { 
+    border-color: rgba(254, 186, 237, 0.8);
   }
 }
