@@ -56,13 +56,6 @@ const CycleCalendar: React.FC = () => {
     return "";
   };
   
-  // Function to modify the calendar day element with our custom classes
-  const modifyDay = (props: any) => {
-    // Extract the date from the props
-    const { date } = props;
-    return cn(dayClassName(date));
-  };
-  
   return (
     <Card className="bg-white bg-opacity-90 border-none shadow-lg">
       <CardHeader>
@@ -84,9 +77,22 @@ const CycleCalendar: React.FC = () => {
                   selected={date}
                   onSelect={setDate}
                   className="rounded-md border shadow-sm"
+                  modifiers={{
+                    periodStart: [cycleData.periodStart],
+                    periodEnd: [cycleData.periodEnd],
+                    periodDay: { from: cycleData.periodStart, to: cycleData.periodEnd },
+                    ovulation: [cycleData.ovulationDate],
+                    symptomDay: cycleData.symptoms.map(s => s.date)
+                  }}
+                  modifiersClassNames={{
+                    periodStart: "bg-shesoul-bubblegum text-white rounded-l-full",
+                    periodEnd: "bg-shesoul-bubblegum text-white rounded-r-full",
+                    periodDay: "bg-shesoul-bubblegum text-white",
+                    ovulation: "bg-shesoul-sunflower text-foreground rounded-full border-2 border-shesoul-sunflower",
+                    symptomDay: "border-2 border-shesoul-pastel"
+                  }}
                   classNames={{
-                    day_selected: "bg-shesoul-pastel text-foreground hover:bg-shesoul-pastel hover:text-foreground",
-                    day: modifyDay
+                    day_selected: "bg-shesoul-pastel text-foreground hover:bg-shesoul-pastel hover:text-foreground"
                   }}
                 />
               </div>
