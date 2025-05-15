@@ -56,6 +56,13 @@ const CycleCalendar: React.FC = () => {
     return "";
   };
   
+  // Function to modify the calendar day element with our custom classes
+  const modifyDay = (props: any) => {
+    // Extract the date from the props
+    const { date } = props;
+    return cn(dayClassName(date));
+  };
+  
   return (
     <Card className="bg-white bg-opacity-90 border-none shadow-lg">
       <CardHeader>
@@ -79,10 +86,7 @@ const CycleCalendar: React.FC = () => {
                   className="rounded-md border shadow-sm"
                   classNames={{
                     day_selected: "bg-shesoul-pastel text-foreground hover:bg-shesoul-pastel hover:text-foreground",
-                    day: (props) => {
-                      // We need to access the date from the props to use our dayClassName function
-                      return cn(dayClassName(props.date));
-                    }
+                    day: modifyDay
                   }}
                 />
               </div>
