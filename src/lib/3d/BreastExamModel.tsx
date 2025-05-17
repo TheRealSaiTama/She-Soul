@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
-import { useGLTF } from '@react-three/drei';
-import { animated } from '@react-spring/three';
+import { animated, useSpring } from '@react-spring/three';
+import { Html } from '@react-three/drei';
 
 // In a real implementation, we'd need an actual 3D model of a torso
 // For now, we'll create a simplified placeholder model
@@ -66,12 +66,11 @@ export const BreastExamModel: React.FC<BreastExamModelProps> = ({
       {/* Basic torso shape */}
       <mesh position={[0, 0, 0]} scale={[1.2, 1.5, 0.8]}>
         <sphereGeometry args={[1, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color="#FBDDEF" // Blush Pink
-          transparent={true}
+          transparent
           opacity={0.7}
           roughness={0.2}
-          clearcoat={0.8}
         />
       </mesh>
 
@@ -86,9 +85,9 @@ export const BreastExamModel: React.FC<BreastExamModelProps> = ({
           onClick={() => onRegionSelect(region)}
         >
           <sphereGeometry args={[0.35, 32, 32]} />
-          <meshPhysicalMaterial
+          <meshStandardMaterial
             color={region.color}
-            transparent={true}
+            transparent
             opacity={hoveredRegion === region.id ? 0.9 : 0.5}
             roughness={0.3}
             metalness={hoveredRegion === region.id ? 0.2 : 0}

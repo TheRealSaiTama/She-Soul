@@ -39,14 +39,12 @@ const Day3D: React.FC<Day3DProps> = ({
     >
       <mesh>
         <boxGeometry args={[0.9, 0.9, 0.1]} />
-        <meshPhysicalMaterial 
+        <meshStandardMaterial 
           color={color}
-          transparent={true}
+          transparent
           opacity={opacity}
           roughness={0.2}
           metalness={0.1}
-          clearcoat={0.8}
-          clearcoatRoughness={0.2}
         />
       </mesh>
       <Text

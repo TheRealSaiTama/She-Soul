@@ -73,22 +73,20 @@ export const WorkplaceAvatar: React.FC<WorkplaceAvatarProps> = ({
       {/* Simplified avatar body */}
       <mesh position={[0, 0, 0]} scale={[0.7, 1, 0.3]}>
         <capsuleGeometry args={[0.5, 1.5, 16, 16]} />
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color="#FBDDEF" // Blush Pink
-          transparent={true}
+          transparent
           opacity={0.7}
           roughness={0.3}
-          clearcoat={0.5}
-          clearcoatRoughness={0.2}
         />
       </mesh>
       
       {/* Head */}
       <mesh position={[0, 1.5, 0]}>
         <sphereGeometry args={[0.3, 32, 32]} />
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color="#FBDDEF" // Blush Pink
-          transparent={true}
+          transparent
           opacity={0.7}
           roughness={0.3}
         />
@@ -97,9 +95,9 @@ export const WorkplaceAvatar: React.FC<WorkplaceAvatarProps> = ({
       {/* Arms */}
       <mesh position={[-0.9, 0.6, 0]} rotation={[0, 0, -Math.PI / 3]} scale={[0.2, 0.6, 0.2]}>
         <cylinderGeometry args={[0.2, 0.2, 1, 16]} />
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color="#FBDDEF" // Blush Pink
-          transparent={true}
+          transparent
           opacity={0.7}
           roughness={0.3}
         />
@@ -107,9 +105,9 @@ export const WorkplaceAvatar: React.FC<WorkplaceAvatarProps> = ({
       
       <mesh position={[0.9, 0.6, 0]} rotation={[0, 0, Math.PI / 3]} scale={[0.2, 0.6, 0.2]}>
         <cylinderGeometry args={[0.2, 0.2, 1, 16]} />
-        <meshPhysicalMaterial
+        <meshStandardMaterial
           color="#FBDDEF" // Blush Pink
-          transparent={true}
+          transparent
           opacity={0.7}
           roughness={0.3}
         />
@@ -124,9 +122,9 @@ export const WorkplaceAvatar: React.FC<WorkplaceAvatarProps> = ({
           scale={selectedExercise?.id === exercise.id ? 0.25 : 0.2}
         >
           <sphereGeometry args={[1, 32, 32]} />
-          <meshPhysicalMaterial
+          <meshStandardMaterial
             color={exercise.highlightColor}
-            transparent={true}
+            transparent
             opacity={selectedExercise?.id === exercise.id ? 0.8 : 0.5}
             emissive={exercise.highlightColor}
             emissiveIntensity={selectedExercise?.id === exercise.id ? 0.5 : 0.2}
