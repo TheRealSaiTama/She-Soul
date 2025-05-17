@@ -13,8 +13,18 @@ import WorkplaceWellness from "./pages/WorkplaceWellness";
 import Doctors from "./pages/Doctors";
 import NotFound from "./pages/NotFound";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { Suspense } from "react";
 
 const queryClient = new QueryClient();
+
+// Create separate error boundaries for routes
+const SafeRoute = ({ element }: { element: React.ReactNode }) => (
+  <ErrorBoundary>
+    <Suspense fallback={<div className="flex items-center justify-center h-screen">Loading...</div>}>
+      {element}
+    </Suspense>
+  </ErrorBoundary>
+);
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -24,13 +34,13 @@ const App = () => (
       <ErrorBoundary>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<Index />} />
-            <Route path="/cycle" element={<CycleTracking />} />
-            <Route path="/menopause" element={<Menopause />} />
-            <Route path="/breast-health" element={<BreastHealth />} />
-            <Route path="/reproductive-health" element={<ReproductiveHealth />} />
-            <Route path="/workplace" element={<WorkplaceWellness />} />
-            <Route path="/doctors" element={<Doctors />} />
+            <Route path="/" element={<SafeRoute element={<Index />} />} />
+            <Route path="/cycle" element={<SafeRoute element={<CycleTracking />} />} />
+            <Route path="/menopause" element={<SafeRoute element={<SafeRoute element={<Menopause />} />} />} />
+            <Route path="/breast-health" element={<SafeRoute element={<BreastHealth />} />} />
+            <Route path="/reproductive-health" element={<SafeRoute element={<ReproductiveHealth />} />} />
+            <Route path="/workplace" element={<SafeRoute element={<WorkplaceWellness />} />} />
+            <Route path="/doctors" element={<SafeRoute element={<Doctors />} />} />
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />
           </Routes>
