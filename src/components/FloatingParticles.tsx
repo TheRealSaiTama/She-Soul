@@ -1,8 +1,8 @@
 
 import React, { useCallback } from 'react';
-import Particles from 'react-particles';
-import type { Container, Engine } from 'tsparticles-engine';
-import { loadSlim } from 'tsparticles-slim';
+import Particles from "react-particles";
+import type { Container, Engine } from "tsparticles-engine";
+import { loadSlim } from "tsparticles-slim";
 
 interface FloatingParticlesProps {
   count?: number;
