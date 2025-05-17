@@ -51,7 +51,7 @@ export const FloatingParticles: React.FC<FloatingParticlesProps> = ({
             modes: {
               grab: {
                 distance: 140,
-                line_linked: {
+                links: {
                   opacity: 0.5,
                 },
               },
