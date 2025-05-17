@@ -3,9 +3,6 @@ import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Group } from 'three';
 
-// Define the placeholder model path - would be replaced with actual models
-const AVATAR_PATH = '/models/female_avatar.glb';
-
 type Avatar3DProps = {
   scale?: number;
   position?: [number, number, number];
@@ -42,7 +39,7 @@ export function Avatar3D({
         <sphereGeometry args={[1, 32, 32]} />
         <meshStandardMaterial 
           color={highlightColor}
-          transparent
+          transparent={true}
           opacity={opacity}
           roughness={0.2}
           metalness={0.1}
@@ -53,7 +50,7 @@ export function Avatar3D({
         <sphereGeometry args={[0.7, 32, 16]} />
         <meshStandardMaterial 
           color="#FEBAED" // Pastel Pink
-          transparent
+          transparent={true}
           opacity={opacity}
           roughness={0.3}
         />

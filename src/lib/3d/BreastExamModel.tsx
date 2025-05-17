@@ -1,6 +1,5 @@
 
 import React, { useState } from 'react';
-import { animated, useSpring } from '@react-spring/three';
 import { Html } from '@react-three/drei';
 
 // In a real implementation, we'd need an actual 3D model of a torso
@@ -68,7 +67,7 @@ export const BreastExamModel: React.FC<BreastExamModelProps> = ({
         <sphereGeometry args={[1, 32, 32, 0, Math.PI * 2, 0, Math.PI / 2]} />
         <meshStandardMaterial
           color="#FBDDEF" // Blush Pink
-          transparent
+          transparent={true}
           opacity={0.7}
           roughness={0.2}
         />
@@ -76,7 +75,7 @@ export const BreastExamModel: React.FC<BreastExamModelProps> = ({
 
       {/* Breast regions */}
       {examRegions.map((region) => (
-        <animated.mesh
+        <mesh
           key={region.id}
           position={region.position}
           scale={hoveredRegion === region.id ? [1.2, 1.2, 1.2] : [1, 1, 1]}
@@ -87,14 +86,14 @@ export const BreastExamModel: React.FC<BreastExamModelProps> = ({
           <sphereGeometry args={[0.35, 32, 32]} />
           <meshStandardMaterial
             color={region.color}
-            transparent
+            transparent={true}
             opacity={hoveredRegion === region.id ? 0.9 : 0.5}
             roughness={0.3}
             metalness={hoveredRegion === region.id ? 0.2 : 0}
             emissive={region.color}
             emissiveIntensity={hoveredRegion === region.id ? 0.3 : 0}
           />
-        </animated.mesh>
+        </mesh>
       ))}
     </group>
   );
