@@ -12,6 +12,7 @@ import ReproductiveHealth from "./pages/ReproductiveHealth";
 import WorkplaceWellness from "./pages/WorkplaceWellness";
 import Doctors from "./pages/Doctors";
 import NotFound from "./pages/NotFound";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
@@ -20,19 +21,21 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <Routes>
-          <Route path="/" element={<Index />} />
-          <Route path="/cycle" element={<CycleTracking />} />
-          <Route path="/menopause" element={<Menopause />} />
-          <Route path="/breast-health" element={<BreastHealth />} />
-          <Route path="/reproductive-health" element={<ReproductiveHealth />} />
-          <Route path="/workplace" element={<WorkplaceWellness />} />
-          <Route path="/doctors" element={<Doctors />} />
-          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-          <Route path="*" element={<NotFound />} />
-        </Routes>
-      </BrowserRouter>
+      <ErrorBoundary>
+        <BrowserRouter>
+          <Routes>
+            <Route path="/" element={<Index />} />
+            <Route path="/cycle" element={<CycleTracking />} />
+            <Route path="/menopause" element={<Menopause />} />
+            <Route path="/breast-health" element={<BreastHealth />} />
+            <Route path="/reproductive-health" element={<ReproductiveHealth />} />
+            <Route path="/workplace" element={<WorkplaceWellness />} />
+            <Route path="/doctors" element={<Doctors />} />
+            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+        </BrowserRouter>
+      </ErrorBoundary>
     </TooltipProvider>
   </QueryClientProvider>
 );

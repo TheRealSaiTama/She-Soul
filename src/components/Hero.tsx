@@ -1,11 +1,7 @@
 
-import React, { useRef, useEffect } from "react";
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
-import { Link } from "react-router-dom";
 import { motion, useScroll, useTransform } from "framer-motion";
-import Scene3D from "@/lib/3d/Scene3D";
-import Avatar3D from "@/lib/3d/Avatar3D";
-import GlassMorphism from "@/lib/3d/GlassMorphism";
 
 const Hero: React.FC = () => {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -106,20 +102,20 @@ const Hero: React.FC = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.5 }}
           >
-            <GlassMorphism 
-              className="absolute inset-0 overflow-hidden"
-              opacity="low" 
-              blurStrength="light"
-              borderGlow
-            >
-              <Scene3D height="500px">
-                <Avatar3D 
-                  scale={1.5} 
-                  position={[0, -1, 0]} 
-                  highlightColor="#FC91D5" 
-                  opacity={0.8}
-                />
-              </Scene3D>
+            {/* Simplified hero right side without 3D */}
+            <div className="absolute inset-0 overflow-hidden rounded-lg bg-gradient-to-br from-shesoul-blush to-white p-6 shadow-xl">
+              {/* Decorative elements */}
+              <div className="absolute top-10 right-10 w-16 h-16 rounded-full bg-shesoul-bubblegum bg-opacity-30"></div>
+              <div className="absolute bottom-10 left-10 w-20 h-20 rounded-full bg-shesoul-sunflower bg-opacity-30"></div>
+              
+              {/* Central avatar placeholder */}
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-64 h-64 rounded-full bg-gradient-to-br from-shesoul-bubblegum via-shesoul-pastel to-shesoul-peach bg-opacity-70 flex items-center justify-center">
+                  <div className="w-56 h-56 rounded-full bg-white bg-opacity-40 flex items-center justify-center">
+                    <div className="w-48 h-48 rounded-full bg-gradient-to-tl from-shesoul-bubblegum to-shesoul-sunflower bg-opacity-50"></div>
+                  </div>
+                </div>
+              </div>
               
               {/* Floating widgets */}
               <motion.div 
@@ -137,7 +133,7 @@ const Hero: React.FC = () => {
               >
                 <div className="w-4 h-4 rounded-full bg-shesoul-sunflower"></div>
               </motion.div>
-            </GlassMorphism>
+            </div>
           </motion.div>
         </div>
       </div>
