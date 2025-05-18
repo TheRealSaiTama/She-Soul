@@ -1,8 +1,6 @@
-
 import React, { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Sphere, MeshDistortMaterial } from '@react-three/drei';
-import { motion } from 'framer-motion-3d';
+import { Sphere } from '@react-three/drei';
 import * as THREE from 'three';
 
 type WellnessOrbProps = {
@@ -40,39 +38,27 @@ export const WellnessOrb: React.FC<WellnessOrbProps> = ({
   // Animate the sphere's distortion
   useFrame(({ clock }) => {
     if (meshRef.current) {
-      meshRef.current.rotation.x = Math.sin(clock.getElapsedTime() * 0.4 * speed) * 0.3;
-      meshRef.current.rotation.y = Math.sin(clock.getElapsedTime() * 0.3 * speed) * 0.3;
-      meshRef.current.rotation.z = Math.cos(clock.getElapsedTime() * 0.2 * speed) * 0.3;
+      // Use simple rotation based on time
+      meshRef.current.rotation.y = clock.getElapsedTime() * 0.2 * speed;
     }
   });
   
   return (
     <group position={position}>
-      <motion.mesh
+      <mesh
         ref={meshRef}
         scale={scale}
-        animate={{
-          y: [0, 0.2, 0],
-        }}
-        transition={{
-          repeat: Infinity,
-          duration: 4,
-          ease: "easeInOut",
-        }}
       >
         <Sphere args={[1, 64, 64]}>
-          <MeshDistortMaterial
+          <meshStandardMaterial
             color={color}
-            attach="material"
-            distort={0.4}
-            speed={3}
             roughness={0.5}
             metalness={0.3}
             opacity={0.9}
             transparent={true}
           />
         </Sphere>
-      </motion.mesh>
+      </mesh>
       
       {/* Add a subtle glow effect */}
       <mesh scale={[scale * 1.2, scale * 1.2, scale * 1.2]}>

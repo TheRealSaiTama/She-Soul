@@ -124,7 +124,8 @@ const Index = () => {
               <PulsatingRings size={220} color="#FC91D5" opacity={0.15} className="mx-auto" />
               <div className="relative -mt-48">
                 <Scene3D height="200px" controls={false} autoRotate={true}>
-                  <WellnessOrb scale={1.5} />
+                  {/* <WellnessOrb scale={1.5} /> */}
+                  <></>
                 </Scene3D>
               </div>
             </motion.div>
@@ -384,7 +385,8 @@ const Index = () => {
                 transition={{ delay: 0.5, duration: 0.8 }}
               >
                 <Scene3D height="100%" background="transparent" controls={false} autoRotate={true}>
-                  <WellnessOrb scale={0.8} variant="sunflower" />
+                  {/* <WellnessOrb scale={0.8} variant="sunflower" /> */}
+                  <></>
                 </Scene3D>
               </motion.div>
             </motion.div>

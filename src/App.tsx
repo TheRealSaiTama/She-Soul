@@ -1,9 +1,10 @@
-
+import React from 'react';
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
 import Index from "./pages/Index";
 import CycleTracking from "./pages/CycleTracking";
 import Menopause from "./pages/Menopause";
@@ -12,8 +13,11 @@ import ReproductiveHealth from "./pages/ReproductiveHealth";
 import WorkplaceWellness from "./pages/WorkplaceWellness";
 import Doctors from "./pages/Doctors";
 import NotFound from "./pages/NotFound";
+import AuthPage from "./pages/AuthPage";
+import DatePickerTest from "./pages/DatePickerTest";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Suspense } from "react";
+import Pricing from "./pages/Pricing";
 
 const queryClient = new QueryClient();
 
@@ -34,14 +38,17 @@ const App = () => (
       <ErrorBoundary>
         <BrowserRouter>
           <Routes>
-            <Route path="/" element={<SafeRoute element={<Index />} />} />
+            <Route path="/" element={<SafeRoute element={<LandingPage />} />} />
             <Route path="/cycle" element={<SafeRoute element={<CycleTracking />} />} />
             <Route path="/menopause" element={<SafeRoute element={<SafeRoute element={<Menopause />} />} />} />
             <Route path="/breast-health" element={<SafeRoute element={<BreastHealth />} />} />
             <Route path="/reproductive-health" element={<SafeRoute element={<ReproductiveHealth />} />} />
             <Route path="/workplace" element={<SafeRoute element={<WorkplaceWellness />} />} />
             <Route path="/doctors" element={<SafeRoute element={<Doctors />} />} />
-            {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+            <Route path="/auth" element={<SafeRoute element={<AuthPage />} />} />
+            <Route path="/select-dob" element={<SafeRoute element={<DatePickerTest />} />} />
+            <Route path="/pricing" element={<SafeRoute element={<Pricing />} />} />
+            <Route path="/dashboard" element={<SafeRoute element={<Index />} />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>

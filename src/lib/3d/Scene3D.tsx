@@ -1,4 +1,3 @@
-
 import React, { Suspense } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { OrbitControls, Environment, PresentationControls, useProgress, Html } from '@react-three/drei';
@@ -55,14 +54,17 @@ export const Scene3D: React.FC<Scene3DProps> = ({
             />
           )}
           {controls ? (
-            <OrbitControls 
-              autoRotate={autoRotate} 
-              autoRotateSpeed={0.5} 
-              enableZoom={true} 
-              enablePan={false}
-              minPolarAngle={Math.PI / 6}
-              maxPolarAngle={Math.PI - Math.PI / 6}
-            />
+            <>
+              <OrbitControls 
+                autoRotate={autoRotate} 
+                autoRotateSpeed={0.5} 
+                enableZoom={true} 
+                enablePan={false}
+                minPolarAngle={Math.PI / 6}
+                maxPolarAngle={Math.PI - Math.PI / 6}
+              />
+              {children} 
+            </>
           ) : (
             <PresentationControls
               global
@@ -75,7 +77,6 @@ export const Scene3D: React.FC<Scene3DProps> = ({
               {children}
             </PresentationControls>
           )}
-          {children}
           <Environment preset="city" />
         </Suspense>
       </Canvas>
